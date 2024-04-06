@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
-    private float jump = 16f;
+    private float jump = .5f;
     private bool facingRight = true;
     // Start is called before the first frame update
     [SerializeField] private Rigidbody2D rb;
@@ -23,9 +23,6 @@ public class Movement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump") && canJump()){
             rb.velocity = new Vector2(rb.velocity.x, jump);
-        }
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f){
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y *.5f);
         }
         Flip();
         
