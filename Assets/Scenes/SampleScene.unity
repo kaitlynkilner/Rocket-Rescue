@@ -1625,7 +1625,7 @@ GameObject:
   - component: {fileID: 867201332}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1822,6 +1822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rain: {fileID: 2140426010}
+  player: {fileID: 867201325}
+  health: 0
 --- !u!1 &891742636
 GameObject:
   m_ObjectHideFlags: 0
@@ -28284,7 +28286,7 @@ GameObject:
   - component: {fileID: 2140426013}
   m_Layer: 0
   m_Name: AcidRain
-  m_TagString: Untagged
+  m_TagString: Rain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
