@@ -6,15 +6,15 @@ public class Movement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
-    private float jump = .5f;
+    private float jump = 13f;
     private bool facingRight = true;
     // Start is called before the first frame update
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    public Animator animator;
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -25,11 +25,13 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jump);
         }
         Flip();
-        
     }
 
     private void FixedUpdate(){
         rb.velocity = new Vector2(horizontal*speed, rb.velocity.y);
+        animator.SetFloat("xvelocity", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yvelocity", rb.velocity.x);
+
     }
 
     private void Flip(){
@@ -41,7 +43,9 @@ public class Movement : MonoBehaviour
         }
     }
     
-    private bool canJump(){
-        return Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
-    }
+   private bool canJump(){
+    return Physics2D.OverlapCircle(groundCheck.position, .2f, groundLayer);
+
+   }
+
 }
