@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     private float maxHealth = 100f;
     private bool ifExited = false;
     private bool ifRaining = false;
+    private bool inWater = false;
     [SerializeField]public Image healthBar;
     // Start is called before the first frame update
     void Start()
@@ -32,28 +33,34 @@ public class Health : MonoBehaviour
             ifExited = true;
             ifRaining = false;
         }
-        if(ifExited && timer > 1f && ifRaining){
+        if(ifExited && timer < 9f && ifRaining){
             TakeDamage(.1f);
+        }
+        if(inWater){
+            TakeDamage(1f);
         }
 
     }
 
     private void OnTriggerEnter2D(Collider2D col){
         if((col.gameObject.name == "UnderPlatformTrigger" || col.gameObject.name == "UnderPlatformTrigger(1)") && ifRaining){
-            Debug.Log("Under Platform");
             ifExited = false;
         }
         if(col.gameObject.name == "Acid_rainTrigger"){
-        Debug.Log("Collision Detected");
         rain.SetActive(true);
         ifExited = true;
         ifRaining = true;
         col.gameObject.SetActive(false);
         }
+        if(col.gameObject.name == "AcidWater" || col.gameObject.name == "AcidWater(1)"){
+            Debug.Log("In Water");
+            inWater = true;
+        }
     }
      private void OnTriggerExit2D(Collider2D col){
         Debug.Log("Exited");
         ifExited = true;
+        inWater = false;
     }
 
     private void TakeDamage(float ammount){
