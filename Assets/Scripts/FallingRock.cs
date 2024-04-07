@@ -21,7 +21,6 @@ public class FallingRock : MonoBehaviour
         
     }
     public void OnCollisionEnter2D(Collision2D col){
-        ifGrounded = false;
         if(col.gameObject.tag == "Floor"){
             ifGrounded = true;
             animator.SetBool("Grounded", true);}
