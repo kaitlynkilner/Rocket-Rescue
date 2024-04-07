@@ -16,12 +16,14 @@ public class Health : MonoBehaviour
     private bool inWater = false;
     [SerializeField]public Image healthBar;
     [SerializeField]public GameObject GameOver;
+    [SerializeField]public GameObject Win;
     Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         rain.SetActive(false);
         GameOver.SetActive(false);
+        Win.SetActive(false);
         health = maxHealth;
 
     }
@@ -62,6 +64,10 @@ public class Health : MonoBehaviour
         }
         if(col.gameObject.tag == "Rock_Trigger"){
             rock.gravityScale = 1f;
+        }
+        if(col.gameObject.tag == "Rocket"){
+                player.SetActive(false);
+                Win.SetActive(true);
         }
     }
      private void OnTriggerExit2D(Collider2D col){
