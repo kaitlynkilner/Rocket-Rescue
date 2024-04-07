@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Rain
   - Platform
+  - Water
+  - Rain_Trigger
   layers:
   - Default
   - TransparentFX

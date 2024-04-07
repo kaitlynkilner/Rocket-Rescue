@@ -45,16 +45,16 @@ public class Health : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col){
-        if((col.gameObject.name == "UnderPlatformTrigger" || col.gameObject.name == "UnderPlatformTrigger(1)") && ifRaining){
+        if(col.gameObject.tag == "Platform" && ifRaining){
             ifExited = false;
         }
-        if(col.gameObject.name == "Acid_rainTrigger"){
+        if(col.gameObject.tag == "Rain_Trigger"){
         rain.SetActive(true);
         ifExited = true;
         ifRaining = true;
         col.gameObject.SetActive(false);
         }
-        if(col.gameObject.name == "AcidWater" || col.gameObject.name == "AcidWater(1)"){
+        if(col.gameObject.tag == "Water"){
             Debug.Log("In Water");
             inWater = true;
         }
