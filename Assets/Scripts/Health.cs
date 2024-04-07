@@ -96,6 +96,7 @@ public class Health : MonoBehaviour
         healthBar.fillAmount = health / maxHealth;
         if(health <= 0f){
             player.SetActive(false);
+            FallingRock.ifGrounded = false;
             GameOver.SetActive(true);
         }
         }

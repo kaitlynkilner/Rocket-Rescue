@@ -18,6 +18,7 @@ public class GameOver : MonoBehaviour
     }
 
     public void RestartButton(){
+        FallingRock.ifGrounded = false;
         SceneManager.LoadScene("Game");
     }
 }
