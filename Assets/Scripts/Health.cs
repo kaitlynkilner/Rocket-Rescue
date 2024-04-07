@@ -14,10 +14,12 @@ public class Health : MonoBehaviour
     private bool ifRaining = false;
     private bool inWater = false;
     [SerializeField]public Image healthBar;
+    [SerializeField]public GameObject GameOver;
     // Start is called before the first frame update
     void Start()
     {
         rain.SetActive(false);
+        GameOver.SetActive(false);
         health = maxHealth;
 
     }
@@ -68,6 +70,7 @@ public class Health : MonoBehaviour
         healthBar.fillAmount = health / maxHealth;
         if(health <= 0f){
             player.SetActive(false);
+            GameOver.SetActive(true);
         }
         }
     }
