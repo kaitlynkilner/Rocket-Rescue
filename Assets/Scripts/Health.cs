@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private GameObject rain;
     [SerializeField] private GameObject player;
+    [SerializeField] private Rigidbody2D rock;
     private float timer = 10f;
     [SerializeField] private float health;
     private float maxHealth = 100f;
@@ -15,6 +16,7 @@ public class Health : MonoBehaviour
     private bool inWater = false;
     [SerializeField]public Image healthBar;
     [SerializeField]public GameObject GameOver;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,11 +60,29 @@ public class Health : MonoBehaviour
             Debug.Log("In Water");
             inWater = true;
         }
+        if(col.gameObject.tag == "Rock_Trigger"){
+            rock.gravityScale = 1f;
+        }
     }
      private void OnTriggerExit2D(Collider2D col){
         Debug.Log("Exited");
         ifExited = true;
         inWater = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D col){
+        if(col.gameObject.tag == "Platform" && ifRaining){
+            ifExited = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.tag == "Rock" && FallingRock.ifFallen() == false){
+            health = 0f;
+            player.SetActive(false);
+            GameOver.SetActive(true);
+        }
+
     }
 
     private void TakeDamage(float ammount){

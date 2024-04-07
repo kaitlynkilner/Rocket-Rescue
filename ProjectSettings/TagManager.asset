@@ -8,6 +8,9 @@ TagManager:
   - Platform
   - Water
   - Rain_Trigger
+  - Rock
+  - Rock_Trigger
+  - Floor
   layers:
   - Default
   - TransparentFX
